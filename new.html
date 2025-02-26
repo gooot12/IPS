@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CASINO HELP ME - Игровые автоматы</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Arial', sans-serif;
+        }
+        
+        body {
+            background-color: #0c0c0c;
+            color: #e0e0e0;
+            line-height: 1.6;
+        }
+        
+        .gold-text {
+            color: #d4af37;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+        
+        header {
+            background: linear-gradient(to right, #000, #1a1a1a);
+            border-bottom: 2px solid #d4af37;
+            padding: 20px 0;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 36px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+        
+        .nav ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        .nav ul li {
+            margin-left: 30px;
+        }
+        
+        .nav ul li a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-size: 18px;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        
+        .nav ul li a:hover {
+            color: #d4af37;
+        }
+        
+        .hero {
+            background: url('/api/placeholder/1200/600') center/cover;
+            background-blend-mode: overlay;
+            background-color: rgba(0, 0, 0, 0.7);
+            height: 300px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        
+        .hero-content h1 {
+            font-size: 48px;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.9);
+        }
+        
+        .hero-content p {
+            font-size: 20px;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        main {
+            padding: 50px 0;
+        }
+        
+        .section {
+            margin-bottom: 60px;
+        }
+        
+        .section-title {
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        
+        .section-title h2 {
+            font-size: 36px;
+            display: inline-block;
+            padding-bottom: 10px;
+            border-bottom: 2px solid #d4af37;
+        }
+        
+        .game-card {
+            background: linear-gradient(to right, #111, #1d1d1d);
+            border-radius: 8px;
+            overflow: hidden;
+            margin-bottom: 40px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        
+        .game-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #d4af37, #aa8e2e);
+        }
+        
+        .game-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .game-image {
+            position: relative;
+            overflow: hidden;
+            min-height: 300px;
+        }
+        
+        .game-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+        }
+        
+        .game-image::after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(212, 175, 55, 0.1) 0%, transparent 100%);
+        }
+        
+        .game-details {
+            padding: 30px;
+        }
+        
+        .game-details h3 {
+            font-size: 28px;
+            margin-bottom: 20px;
+            color: #d4af37;
+        }
+        
+        .game-stats {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+            margin: 25px 0;
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .stat-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .stat-item span:first-child {
+            font-size: 14px;
+            color: #999;
+        }
+        
+        .stat-item span:last-child {
+            font-size: 18px;
+            color: #d4af37;
+            font-weight: bold;
+        }
+        
+        .game-rules {
+            margin-top: 20px;
+        }
+        
+        .game-rules h4 {
+            font-size: 20px;
+            margin-bottom: 15px;
+            color: #d4af37;
+        }
+        
+        .rule-list {
+            list-style: none;
+        }
+        
+        .rule-list li {
+            margin-bottom: 10px;
+            position: relative;
+            padding-left: 25px;
+        }
+        
+        .rule-list li::before {
+            content: '•';
+            position: absolute;
+            left: 0;
+            color: #d4af37;
+            font-size: 18px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37, #aa8e2e);
+            color: #000;
+            padding: 12px 30px;
+            border: none;
+            border-radius: 4px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+        
+        .btn:hover {
+            background: linear-gradient(135deg, #aa8e2e, #d4af37);
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(212, 175, 55, 0.4);
+        }
+        
+        .blackjack-section {
+            margin-top: 80px;
+        }
+        
+        .blackjack-content {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+        }
+        
+        .blackjack-card {
+            background: linear-gradient(to right, #111, #1d1d1d);
+            border-radius: 8px;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            position: relative;
+        }
+        
+        .blackjack-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 5px;
+            background: linear-gradient(to right, #d4af37, #aa8e2e);
+        }
+        
+        .blackjack-image {
+            height: 200px;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .blackjack-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .blackjack-details {
+            padding: 25px;
+        }
+        
+        .blackjack-details h3 {
+            font-size: 24px;
+            margin-bottom: 15px;
+            color: #d4af37;
+        }
+        
+        footer {
+            background: linear-gradient(to right, #000, #1a1a1a);
+            padding: 40px 0;
+            text-align: center;
+            border-top: 2px solid #d4af37;
+        }
+        
+        .footer-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+        }
+        
+        .footer-logo {
+            font-size: 24px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+        
+        .footer-links ul {
+            display: flex;
+            list-style: none;
+        }
+        
+        .footer-links ul li {
+            margin-left: 20px;
+        }
+        
+        .footer-links ul li a {
+            color: #e0e0e0;
+            text-decoration: none;
+            transition: color 0.3s;
+        }
+        
+        .footer-links ul li a:hover {
+            color: #d4af37;
+        }
+        
+        .copyright {
+            width: 100%;
+            margin-top: 30px;
+            color: #999;
+            font-size: 14px;
+        }
+        
+        @media (max-width: 768px) {
+            .game-content,
+            .blackjack-content {
+                grid-template-columns: 1fr;
+            }
+            
+            .header-content {
+                flex-direction: column;
+            }
+            
+            .nav ul {
+                margin-top: 20px;
+            }
+            
+            .nav ul li {
+                margin-left: 15px;
+                margin-right: 15px;
+            }
+            
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-links {
+                margin-top: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container header-content">
+            <div class="logo">
+                <span class="gold-text">CASINO</span> HELP ME
+            </div>
+            <nav class="nav">
+                <ul>
+                    <li><a href="#">Главная</a></li>
+                    <li><a href="#slot-machine">Слот-машина</a></li>
+                    <li><a href="#dice-game">Кубики</a></li>
+                    <li><a href="#battleship">Морской бой</a></li>
+                    <li><a href="#blackjack">Блэк Джек</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    
+    <section class="hero">
+        <div class="hero-content">
+            <h1><span class="gold-text">Игровые</span> автоматы</h1>
+            <p>Погрузитесь в мир азарта с нашими эксклюзивными игровыми автоматами</p>
+        </div>
+    </section>
+    
+    <main class="container">
+        <div class="section" id="slot-machine">
+            <div class="section-title">
+                <h2><span class="gold-text">Слот</span>-машина</h2>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-content">
+                    <div class="game-image">
+                        <img src="/api/placeholder/600/400" alt="Слот-машина">
+                    </div>
+                    
+                    <div class="game-details">
+                        <h3>Золотая лихорадка</h3>
+                        <p>Испытайте свою удачу на нашей премиальной слот-машине с высокими коэффициентами выплат и захватывающей графикой. Золотая лихорадка — это шанс сорвать джекпот одним нажатием кнопки!</p>
+                        
+                        <div class="game-stats">
+                            <div class="stat-item">
+                                <span>Минимальная ставка</span>
+                                <span>50</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>Максимальная ставка</span>
+                                <span>1000</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>Линии выплат</span>
+                                <span>5</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>Максимальный выигрыш</span>
+                                <span>x500</span>
+                            </div>
+                        </div>
+                        
+                        <div class="game-rules">
+                            <h4>Как играть:</h4>
+                            <ul class="rule-list">
+                                <li>Разместите ставку, выбрав нужную сумму</li>
+                                <li>Нажмите кнопку "SPIN" для запуска барабанов</li>
+                                <li>Соберите 3 одинаковых символа на линии выплат</li>
+                                <li>Выигрыш автоматически зачисляется на ваш счет</li>
+                                <li>Специальный символ "Золотой самородок" умножает ваш выигрыш в 2 раза</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="#" class="btn">Играть сейчас</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section" id="dice-game">
+            <div class="section-title">
+                <h2><span class="gold-text">Кубики</span> удачи</h2>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-content">
+                    <div class="game-details">
+                        <h3>Королевские кости</h3>
+                        <p>Классическая игра в кости с роскошным оформлением. Сделайте ставку на определенное число или комбинацию и наблюдайте, как кости решают вашу судьбу. Высокие коэффициенты и быстрые раунды гарантируют всплеск адреналина!</p>
+                        
+                        <div class="game-stats">
+                            <div class="stat-item">
+                                <span>Минимальная ставка</span>
+                                <span>100</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>Максимальная ставка</span>
+                                <span>2000</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>Количество кубиков</span>
+                                <span>2</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>Максимальный выигрыш</span>
+                                <span>x30</span>
+                            </div>
+                        </div>
+                        
+                        <div class="game-rules">
+                            <h4>Как играть:</h4>
+                            <ul class="rule-list">
+                                <li>Выберите тип ставки (сумма, конкретное число, четное/нечетное)</li>
+                                <li>Укажите сумму вашей ставки</li>
+                                <li>Нажмите кнопку "БРОСИТЬ КОСТИ"</li>
+                                <li>Если выпавший результат соответствует вашей ставке — вы выиграли!</li>
+                                <li>Угадайте точную сумму двух костей для получения максимального выигрыша</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="#" class="btn">Играть сейчас</a>
+                    </div>
+                    
+                    <div class="game-image">
+                        <img src="/api/placeholder/600/400" alt="Игра в кости">
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section" id="battleship">
+            <div class="section-title">
+                <h2><span class="gold-text">Морской</span> бой</h2>
+            </div>
+            
+            <div class="game-card">
+                <div class="game-content">
+                    <div class="game-image">
+                        <img src="/api/placeholder/600/400" alt="Морской бой">
+                    </div>
+                    
+                    <div class="game-details">
+                        <h3>Адмиральская битва</h3>
+                        <p>Уникальная азартная версия классической игры "Морской бой". Подбивайте корабли противника, чтобы увеличить свой выигрыш. С каждым потопленным кораблем ваш призовой фонд растет, но будьте осторожны — у вас ограниченное количество выстрелов!</p>
+                        
+                        <div class="game-stats">
+                            <div class="stat-item">
+                                <span>Минимальная ставка</span>
+                                <span>200</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>Максимальная ставка</span>
+                                <span>5000</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>Количество кораблей</span>
+                                <span>5</span>
+                            </div>
+                            <div class="stat-item">
+                                <span>Максимальный выигрыш</span>
+                                <span>x1000</span>
+                            </div>
+                        </div>
+                        
+                        <div class="game-rules">
+                            <h4>Как играть:</h4>
+                            <ul class="rule-list">
+                                <li>Сделайте начальную ставку</li>
+                                <li>Получите 15 выстрелов по игровому полю 10x10</li>
+                                <li>Выбирайте координаты для атаки на скрытые корабли</li>
+                                <li>За каждый потопленный корабль вы получаете множитель к ставке</li>
+                                <li>Потопите все корабли для получения максимального выигрыша</li>
+                                <li>Игра заканчивается, когда все выстрелы использованы или все корабли потоплены</li>
+                            </ul>
+                        </div>
+                        
+                        <a href="#" class="btn">Играть сейчас</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section blackjack-section" id="blackjack">
+            <div class="section-title">
+                <h2><span class="gold-text">Игровые</span> столы</h2>
+            </div>
+            
+            <div class="blackjack-content">
+                <div class="blackjack-card">
+                    <div class="blackjack-image">
+                        <img src="/api/placeholder/600/300" alt="Блэк Джек VIP">
+                    </div>
+                    
+                    <div class="blackjack-details">
+                        <h3>Блэк Джек VIP</h3>
+                        <p>Эксклюзивный стол для настоящих ценителей Блэк Джека. Высокие лимиты ставок, профессиональный дилер и роскошная атмосфера создают непревзойденный игровой опыт. Идеальный выбор для опытных игроков.</p>
+                        <ul class="rule-list">
+                            <li>Минимальная ставка: 500</li>
+                            <li>Максимальная ставка: 10000</li>
+                            <li>Блэк Джек выплачивает 3:2</li>
+                            <li>Дилер останавливается на "мягких" 17</li>
+                            <li>Доступно удвоение ставки и разделение пар</li>
+                        </ul>
+                        <a href="#" class="btn">Занять место</a>
+                    </div>
+                </div>
+                
+                <div class="blackjack-card">
+                    <div class="blackjack-image">
+                        <img src="/api/placeholder/600/300" alt="Блэк Джек Классик">
+                    </div>
+                    
+                    <div class="blackjack-details">
+                        <h3>Блэк Джек Классик</h3>
+                        <p>Традиционный стол Блэк Джека для всех категорий игроков. Комфортные ставки, дружелюбная атмосфера и классические правила сделают вашу игру приятной и увлекательной. Идеально подходит для новичков и любителей.</p>
+                        <ul class="rule-list">
+                            <li>Минимальная ставка: 100</li>
+                            <li>Максимальная ставка: 3000</li>
+                            <li>Блэк Джек выплачивает 3:2</li>
+                            <li>Дилер останавливается на всех 17</li>
+                            <li>Доступно страхование от Блэк Джека дилера</li>
+                        </ul>
+                        <a href="#" class="btn">Занять место</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+    <footer>
+        <div class="container footer-content">
+            <div class="footer-logo">
+                <span class="gold-text">CASINO</span> HELP ME
+            </div>
+            
+            <div class="footer-links">
+                <ul>
+                    <li><a href="#">Главная</a></li>
+                    <li><a href="#">Правила</a></li>
+                    <li><a href="#">Бонусы</a></li>
+                    <li><a href="#">Контакты</a></li>
+                </ul>
+            </div>
+            
+            <div class="copyright">
+                &copy; 2025 CASINO HELP ME. Все права защищены.
+            </div>
+        </div>
+    </footer>
+</body>
+</html>
